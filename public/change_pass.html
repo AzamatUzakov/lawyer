@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Забыли пароль</title>
+    <!-- Styles -->
+    <link rel="stylesheet" href="./css/output.css" />
+  </head>
+
+  <body>
+    <!-- Main -->
+    <section
+      class="container-base flex flex-col items-center justify-center h-full min-h-[calc(100vh-140px)] lg:min-h-[calc(100vh-195px)] mb-5"
+    >
+      <div
+        class="w-full max-w-117 mx-auto rounded-body-30 bg-white py-5 lg:py-7.5 px-6 lg:px-10"
+      >
+        <form action="#" class="text-black">
+          <h2 class="font-bold text-2xl lg:text-4xl mb-3.75 lg:mb-6">
+            Забыли пароль?
+          </h2>
+
+          <div class="flex items-center gap-2 mb-3.75 lg:mb-6">
+            <p
+              class="text-base lg:text-xl font-normal font-nunito tracking-[0%]"
+            >
+              Введите ваш email, и мы отправим ссылку для восстановления пароля.
+            </p>
+          </div>
+          <div class="mb-3.75 lg:mb-6 space-y-3 w-[340px] border-4">
+            <input
+              type="text"
+              name="email"
+              id="email"
+              placeholder="Введите email"
+              class="h-12.5 rounded-2xl w-full border border-[#979797] outline-none focus:border-primary focus:text-primary py-2 px-4"
+            />
+          </div>
+
+          <div class="border-2 flex justify-center w-[340px] mb-4">
+            <img
+              src="../public/assets/images/robot.png"
+              alt="robot img"
+              class="w-full h-[89px]"
+            />
+          </div>
+
+          <a
+            href="./new_change_password.html"
+            class="border-btn-2 hover-opacity-80 text-black leading-none rounded-[48px] mx-auto max-w-full md:max-w-75 w-full lg:h-14 h-9 flex-main-center px-7.5 font-medium lg:font-bold text-sm md:text-base lg:text-2xl"
+          >
+            Восстановить
+          </a>
+        </form>
+      </div>
+    </section>
+  </body>
+</html>

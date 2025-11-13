@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pure Slider</title>
+    <link rel="stylesheet" href="./css/output.css">
+    <style>
+        .slider {
+            position: relative;
+            width: 100%;
+            /* max-width: 700px; */
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.6s ease;
+            width: 100%;
+        }
+
+        .slide {
+            min-width: 100%;
+            transition: opacity 0.6s ease;
+        }
+
+        .slide img {
+            width: 100%;
+            display: block;
+        }
+
+        /* Pagination (nuqtalar) */
+        .pagination {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 25px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            background-color: #929292;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0.6;
+        }
+
+        .dot.active {
+            /* background-color: #929292; */
+            opacity: 1;
+            /* transform: scale(1.2); */
+        }
+
+        /* Close icon joylashuvi */
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 10;
+            cursor: pointer;
+        }
+
+        .close-btn img {
+            width: 30px;
+            height: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="pt-7 pb-12.5 lg:pb-20">
+        <nav class="container-base flex items-center justify-between mx-auto gap-5">
+            <div class="inline-flex items-center gap-5 lg:gap-6.25">
+                <a href="#">
+                    <img class="max-w-12 md:max-w-17 w-full" src="./assets/icons/user.svg" alt="user">
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main -->
+    <main class="container-base">
+        <section class="relative">
+            <div class="close-btn size-12.5 hover-prototype-btn rounded-full flex-main-center">
+                <svg width="17" height="17" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M0.292892 0.292892C0.683414 -0.0976305 1.31658 -0.0976305 1.7071 0.292892L9.99995 8.58575L18.2929 0.292888C18.6834 -0.0976323 19.3166 -0.0976288 19.7071 0.292896C20.0976 0.68342 20.0976 1.31658 19.7071 1.7071L11.4142 9.99995L19.707 18.2928C20.0975 18.6833 20.0975 19.3165 19.707 19.707C19.3165 20.0975 18.6833 20.0975 18.2928 19.707L9.99995 11.4142L1.7071 19.7071C1.31658 20.0976 0.68342 20.0976 0.292896 19.7071C-0.0976288 19.3166 -0.0976323 18.6834 0.292888 18.2929L8.58575 9.99995L0.292892 1.7071C-0.0976305 1.31658 -0.0976305 0.683414 0.292892 0.292892Z"
+                        fill="white" />
+                </svg>
+            </div>
+
+            <div class="slider">
+                <div class="slides">
+                    <div class="slide"><img class="min-h-55 object-contain" src="./assets/images/main-img.png"
+                            alt="Image 1"></div>
+                    <div class="slide"><img class="min-h-55 object-contain" src="./assets/images/main-img.png"
+                            alt="Image 2"></div>
+                    <div class="slide"><img class="min-h-55 object-contain" src="./assets/images/main-img.png"
+                            alt="Image 3"></div>
+                </div>
+            </div>
+
+            <div class="pagination"></div>
+        </section>
+    </main>
+
+    <script>
+        const slidesContainer = document.querySelector('.slides');
+        const slides = document.querySelectorAll('.slide');
+        const pagination = document.querySelector('.pagination');
+
+        let currentIndex = 0;
+
+        // Pagination nuqtalarini yaratamiz
+        slides.forEach((_, i) => {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (i === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goToSlide(i));
+            pagination.appendChild(dot);
+        });
+
+        const dots = document.querySelectorAll('.dot');
+
+        function goToSlide(index) {
+            currentIndex = index;
+            updateSlider();
+        }
+
+        function updateSlider() {
+            slidesContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[currentIndex].classList.add('active');
+        }
+
+        // Avtomatik slayder
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % slides.length;
+            updateSlider();
+        }, 3000); // har 3 soniyada almashadi
+
+        // Close tugmasi (faqat namuna uchun)
+        document.querySelector('.close-btn').addEventListener('click', () => {
+            alert('Close button clicked!');
+        });
+    </script>
+</body>
+
+</html>
